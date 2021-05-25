@@ -3,6 +3,11 @@ Number.prototype.toFixedDown = function (digits) {
     m = this.toString().match(re);
   return m ? parseFloat(m[1]) : this.valueOf();
 };
+
+function getQueryStringParams(query) {
+  return new URLSearchParams(window.location.search).get(query) || false;
+}
+
 function clickButton() {
   const url = document.getElementById("urlField").value;
   RESULT = new CalculateRedditAwards(url);
@@ -49,7 +54,22 @@ Total cost of this Premium time: ${RESULT.costPremium
 Total Awards: ${RESULT.count.toLocaleString()} Awards Given
 Total Coins Spent in Awards: ${RESULT.cost.toLocaleString()} Coins
 Total coins Awarded: ${RESULT.reward.toLocaleString()} Coins`;
+  const currentUrlQuery = getQueryStringParams("post");
+  const urlField = document.getElementById("urlField").value;
+  if (!currentUrlQuery || urlField != currentUrlQuery) {
+    window.history.pushState(
+      {
+        id: "query"
+      },
+      "Reddit Award Calculator",
+      `/${window.location.pathname}?post=${urlField}`
+    );
+  }
+  const shareLink = `${window.location.protocol}//${window.location.host}${window.location.pathname}?post=${urlField}`;
+  const shareLinkEl = document.getElementById("shareLink");
+  shareLinkEl.innerHTML = `Share with friends: <a href="${shareLink}">${shareLink}</a>`;
 }
+
 let RESULT = undefined;
 function lastCharacter(str) {
   return str.charAt(str.length - 1);
@@ -133,10 +153,10 @@ class Award {
     this.count = 0;
     this.cost = 0;
     this.reward = 0;
-    this.daysOfPremium = data.days_of_premium | 0;
-    this.cost = data.coin_price | 0;
-    this.count = data.count | 0;
-    this.reward = data.coin_reward | 0;
+    this.daysOfPremium = data.days_of_premium || 0;
+    this.cost = data.coin_price || 0;
+    this.count = data.count || 0;
+    this.reward = data.coin_reward || 0;
   }
   get givesPremium() {
     return this.daysOfPremium > 0;
@@ -154,3 +174,10 @@ class Award {
     return this.givesReward ? this.reward * this.count : 0;
   }
 }
+document.addEventListener("DOMContentLoaded", () => {
+  const url = getQueryStringParams("post");
+  if (url) {
+    document.getElementById("urlField").value = url;
+    clickButton();
+  }
+});
