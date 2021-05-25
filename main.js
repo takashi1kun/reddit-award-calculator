@@ -67,7 +67,7 @@ Total coins Awarded: ${RESULT.reward.toLocaleString()} Coins`;
   }
   const shareLink = `${window.location.protocol}//${window.location.host}${window.location.pathname}?post=${urlField}`;
   const shareLinkEl = document.getElementById("shareLink");
-  shareLinkEl.innerHTML = `Share with friends: <a href="${shareLink}">${shareLink}</a>`;
+  shareLinkEl.innerHTML = `Share with friends:<br> <a style="word-break: break-all;" href="${shareLink}">${shareLink}</a>`;
 }
 
 let RESULT = undefined;
