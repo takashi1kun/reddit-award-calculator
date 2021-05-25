@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <title>Reddit Award Calculator</title>
+    <link rel="stylesheet" href="stylize.css" async defer />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>Reddit Award Calculator</h1>
+      <p>
+        This is a simple calculator to calculate certain statistics regarding
+        the awards of a post on reddit, just put the url of the post and click
+        calculate!
+      </p>
+      <fieldset>
+        <legend><b>Calculator</b></legend>
+        <form onsubmit="return clickButton();">
+          <label for="urlField"><b>Reddit Post Url</b></label
+          ><br />
+          <input
+            type="text"
+            name="url"
+            id="urlField"
+            style="width: calc(100% - 92px);"
+          />
+          <input type="submit" value="Calculate" /><br />
+        </form>
+        <label for="result"><b>Result</b></label
+        ><br />
+        <textarea
+          id="result"
+          readonly="1"
+          style="resize: none; width: 100%;"
+        ></textarea
+        ><br />
+      </fieldset>
+      <p>
+        If you want to know the prices of the coins, someone else made a
+        calculator for that: <a href="https://awardit.info/">Link</a>
+      </p>
+      <p>
+        <small
+          >Disclaimer, the price of premium is calculated as 59.99$ a year and
+          5.99$ a month as of date of 25/05/2021 viewed from EU, it is
+          calculated as the most optimal form, IE, first calcualte the years
+          with the yearly price and then the rest of months with the month
+          price, remaining days are ignored.</small
+        >
+      </p>
+      <p>
+        Made with 🥘 by
+        <a href="https://github.com/takashi1kun">Aitor Rosell Torralba</a>
+        <a
+          class="right"
+          href="https://github.com/takashi1kun/reddit-award-calculator"
+          ><img
+            src="https://shields.io/badge/Repo-@takashi1kun/reddit--award--calculator-blue?logo=github&style=flat"
+        /></a>
+      </p>
+    </main>
+    <script src="main.js" async defer></script>
+  </body>
+</html>
