@@ -62,7 +62,7 @@ Total coins Awarded: ${RESULT.reward.toLocaleString()} Coins`;
         id: "query"
       },
       "Reddit Award Calculator",
-      `/${window.location.pathname}?post=${urlField}`
+      `${window.location.pathname}?post=${urlField}`
     );
   }
   const shareLink = `${window.location.protocol}//${window.location.host}${window.location.pathname}?post=${urlField}`;
