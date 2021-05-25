@@ -174,10 +174,10 @@ class Award {
     return this.givesReward ? this.reward * this.count : 0;
   }
 }
-document.addEventListener("DOMContentLoaded", () => {
+(() => {
   const url = getQueryStringParams("post");
   if (url) {
     document.getElementById("urlField").value = url;
     clickButton();
   }
-});
+})();
